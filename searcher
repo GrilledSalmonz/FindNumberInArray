@@ -4,7 +4,13 @@ public class Searching {
   public static void main(String[] args) {
     
     int arrLength = 500;
+    
+    // This is the target the code will look for in the array. 
+    
     int target = 2;
+    
+    // This code below creates the numbers 1-500 inclusive for the array.
+    // Numbers may repeat in the array. EX: [1, 2, 2, 2, 3, 4, 4, 5....].
     
     int[] nums = new int[arrLength];
     for (int i = 0; i < nums.length; i++) {
@@ -21,7 +27,9 @@ public class Searching {
         maxVal = num;
       }
     }
-    
+   
+    // Print out the range of nums array.
+   
     Arrays.sort(nums);
     
     System.out.println(Arrays.toString(nums));
@@ -30,7 +38,6 @@ public class Searching {
     System.out.println();
     seqSearch(nums, target);
     binSearch(nums, target);
-    
   }
   
   // Searching for the first occurance of target in the array by starting from index 0. 
@@ -58,7 +65,8 @@ public class Searching {
     System.out.println();
   }
   
-  // Searching for the first occurance of target in the array by removing half the array from the midpoint.  
+  // Different code for same array.
+  // Searching for the first occurance of target in the array by removing half the array from the midpoint. 
 
   public static void binSearch(int[] nums, int target) {
     
