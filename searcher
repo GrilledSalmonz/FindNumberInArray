@@ -1,0 +1,86 @@
+import java.util.Arrays;
+
+public class Searching {
+  public static void main(String[] args) {
+    
+    int arrLength = 500;
+    int target = 2;
+    
+    int[] nums = new int[arrLength];
+    for (int i = 0; i < nums.length; i++) {
+      nums[i] = (int) (Math.random() * arrLength + 1);
+    }
+    int minVal = nums[0];
+    int maxVal = nums[0];
+    
+    for (int num : nums) {
+      if (num < minVal) {
+        minVal = num;
+      }
+      if (num > maxVal) {
+        maxVal = num;
+      }
+    }
+    
+    Arrays.sort(nums);
+    
+    System.out.println(Arrays.toString(nums));
+    System.out.println();
+	System.out.println("Numbers from " + minVal + " to " + maxVal);
+    System.out.println();
+    seqSearch(nums, target);
+    binSearch(nums, target);
+    
+  }
+  
+  // Searching for the first occurance of target in the array by starting from index 0. 
+  
+  public static void seqSearch(int[] nums, int target) {
+    
+    int targetIndex = -1;
+    int searchCount = 0;
+    
+    for (int i = 0; i < nums.length; i++) {
+      searchCount++;
+      if (nums[i] == target) {
+        targetIndex = i;
+        break;
+      }
+    }
+    
+    if (targetIndex == -1) {
+    	System.out.println("Cannot find target.");
+    } else {
+    		System.out.println("Position of target " + target + " is at "  
+                + targetIndex + " found in " + searchCount + " searches");
+    }
+    
+    System.out.println();
+  }
+  
+  // Searching for the first occurance of target in the array by removing half the array from the midpoint.  
+
+  public static void binSearch(int[] nums, int target) {
+    
+    int targetIndex = -1;
+    int searchCount = 1;
+    
+    int left = 0;
+    int right = nums.length - 1;
+    int mid = (left + right) / 2;
+  
+    while (nums[mid] != target) {
+      searchCount++;
+      if (nums[mid] < target) {
+        left = mid + 1;
+      }
+      if (nums[mid] > target) {
+        right = mid - 1;
+      }
+      mid = (left + right) / 2;
+    }
+    
+    System.out.println("Position of target " + target + " is at " + mid 
+                      + " found in " + searchCount + " searches");
+  }
+}
